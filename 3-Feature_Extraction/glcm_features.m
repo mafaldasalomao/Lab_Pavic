@@ -1,0 +1,17 @@
+I = imread('circuit.tif');
+imshow(I);
+glcms = graycomatrix(I,'Offset',[2 0; 0 2]);
+disp(glcms);
+stat_feature = graycoprops(glcms);
+Energy_fet1 = stat_feature.Energy;
+disp('Energy_fet1');
+disp(Energy_fet1);
+Contrast_fet1 = stat_feature.Contrast;
+disp('Contrast_fet1');
+disp(Contrast_fet1);
+Correlation_fet1 = stat_feature.Correlation;
+disp('Correlation_fet1');
+disp(Correlation_fet1);
+Homogeneity_fet1 = stat_feature.Homogeneity;
+disp('Homogeneity_fet1');
+disp(Homogeneity_fet1);
