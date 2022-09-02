@@ -2,7 +2,7 @@
 %Extract unique core e unique infor
 %Reduce missclassification
 %Reduce complexity math
-im = imread('cameraman.tif');
+im = imread('teste.jpeg');
 
 [LL LH HL HH] = dwt2(im, 'db1'); %haar db
 

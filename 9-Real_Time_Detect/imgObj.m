@@ -1,10 +1,10 @@
 clc; clear all ; close all;
 
-SceneImage = rgb2gray(imread("face.jpg"));
-TargetImage = rgb2gray(imread("face_crop.jpg"));
-
-ScenePoints = detectSURFFeatures(SceneImage);
-TargetPoints = detectSURFFeatures(TargetImage);
+SceneImage = rgb2gray(imread("teste.jpeg"));
+TargetImage = rgb2gray(imread("crop3.jpeg"));
+%extractLBPFeatures
+ScenePoints = extractLBPFeatures(SceneImage);
+TargetPoints = extractLBPFeatures(TargetImage);
 
 [SceneFeatures, SceneValidPoints] = extractFeatures(SceneImage, ScenePoints);
 [TargetFeatures, TargetValidPoints] = extractFeatures(TargetImage, TargetPoints);
