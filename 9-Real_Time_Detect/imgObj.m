@@ -1,10 +1,10 @@
 clc; clear all ; close all;
 
-SceneImage = rgb2gray(imread("teste.jpeg"));
-TargetImage = rgb2gray(imread("crop3.jpeg"));
+SceneImage = rgb2gray(imread("LUCAS.png"));
+TargetImage = rgb2gray(imread("target.png"));
 %extractLBPFeatures
-ScenePoints = extractLBPFeatures(SceneImage);
-TargetPoints = extractLBPFeatures(TargetImage);
+ScenePoints = detectMinEigenFeatures(SceneImage);
+TargetPoints = detectMinEigenFeatures(TargetImage);
 
 [SceneFeatures, SceneValidPoints] = extractFeatures(SceneImage, ScenePoints);
 [TargetFeatures, TargetValidPoints] = extractFeatures(TargetImage, TargetPoints);
@@ -16,5 +16,4 @@ matchedPoints2 = TargetValidPoints(indexPairs(:,2));
 figure;
 
 showMatchedFeatures(SceneImage, TargetImage, matchedPoints1, matchedPoints2, 'montage');
-
 

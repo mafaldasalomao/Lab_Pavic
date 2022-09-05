@@ -2,12 +2,10 @@ clc; clear all; close all;
 camObj = webcam(1);
 TargetImage = imread("target.png");
 TargetImage = rgb2gray(TargetImage);
-%TargetImage =  adapthisteq(TargetImage);
 
 while(1)
     SceneImage1 = snapshot(camObj);
     SceneImage = rgb2gray(SceneImage1);
-    %SceneImage = adapthisteq(SceneImage);
     [matchedScenePoints, matchedBoxPoints] = featurextract(SceneImage,TargetImage);
     len = length(matchedScenePoints);
     if len>20
@@ -22,7 +20,7 @@ while(1)
             estimateGeometricTransform(matchedBoxPoints,matchedScenePoints, 'affine');
         newBoxPolign = transformPointsForward(tform, bbox)
         d='object recognized'
-        currFrame = SceneImage;
+        currFrame = SceneImage1;
         position = [321 430];
         box_color = {'yellow'};
         RGB = insertText(currFrame, position, d, 'FontSize',22, 'BoxColor',box_color);
@@ -33,7 +31,7 @@ while(1)
     else
         disp('object not recognized');
         d='Object not recognized'
-        currentFrame = SceneImage;
+        currentFrame = SceneImage1;
         position = [321 430];
         box_color = {'yellow'};
         RGB = insertText(currentFrame, position, d, 'FontSize',22, 'BoxColor',box_color);
