@@ -28,7 +28,7 @@ while(1)
             estimateGeometricTransform(matchedBoxPoints,matchedScenePoints, 'affine');
         newBoxPolign = transformPointsForward(tform, bbox)
         d=sprintf("object recognized, FPS %2.2f", fps);
-        currFrame = SceneImage;
+        currFrame = SceneImage1;
         position = [321 430];
         box_color = {'yellow'};
         RGB = insertText(currFrame, position, sprintf('FPS %2.2f', fps), 'FontSize',22, 'BoxColor',box_color);
@@ -39,7 +39,7 @@ while(1)
     else
         disp('object not recognized');
         d='Object not recognized'
-        currentFrame = SceneImage;
+        currentFrame = SceneImage1;
         position = [321 430];
         box_color = {'yellow'};
         RGB = insertText(currentFrame, position, sprintf('FPS %2.2f', fps), 'FontSize',22, 'BoxColor',box_color);
