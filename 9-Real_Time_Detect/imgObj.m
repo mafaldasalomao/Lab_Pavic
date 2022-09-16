@@ -1,10 +1,10 @@
 clc; clear all ; close all;
 
-SceneImage = rgb2gray(imread("LUCAS.png"));
-TargetImage = rgb2gray(imread("target.png"));
+SceneImage = rgb2gray(imread("scene.jpg"));
+TargetImage = rgb2gray(imread("crop.jpg"));
 %extractLBPFeatures
-ScenePoints = detectMinEigenFeatures(SceneImage);
-TargetPoints = detectMinEigenFeatures(TargetImage);
+ScenePoints = detectSURFFeatures(SceneImage);
+TargetPoints = detectSURFFeatures(TargetImage);
 
 [SceneFeatures, SceneValidPoints] = extractFeatures(SceneImage, ScenePoints);
 [TargetFeatures, TargetValidPoints] = extractFeatures(TargetImage, TargetPoints);
