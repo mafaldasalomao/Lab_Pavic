@@ -12,7 +12,7 @@ net = blockedNetwork(unetBlock,4,"NamePrefix","encoder_")
 net = initialize(net,dlarray(zeros(224,224,3),"SSC"));
 analyzeNetwork(net)
 
-%% Load net pre trained
+%%Load net pre trained
 
 depth = 4;
 [encoder,outputNames] = pretrainedEncoderNetwork('googlenet',depth);
@@ -27,24 +27,7 @@ exampleOutput = cell(1,length(outputNames));
 
 
 
-%Determine the number of channels in the decoder blocks as the length 
-% of the third channel in each activation.
+Determine the number of channels in the decoder blocks as the length of the third channel in each activation.
 
 numChannels = cellfun(@(x) size(extractdata(x),3),exampleOutput);
 numChannels = fliplr(numChannels(1:end-1));
-
-%Define a function that creates an array of layers for one decoder block.
-decoderBlock = @(block) [
-    transposedConv2dLayer(2,numChannels(block),'Stride',2)
-    convolution2dLayer(3,numChannels(block),'Padding','same')
-    reluLayer
-    convolution2dLayer(3,numChannels(block),'Padding','same')
-    reluLayer];
-
-
-decoder = blockedNetwork(decoderBlock,depth);
-
-net = encoderDecoderNetwork([224 224 3],encoder,decoder, ...
-   'OutputChannels',3,'SkipConnections','concatenate')
-
-netUpdated = initialize(net)
